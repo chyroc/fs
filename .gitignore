@@ -13,3 +13,5 @@
 .idea/
 bin/
 vendor/
+dist/
+.DS_Store
