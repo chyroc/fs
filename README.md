@@ -17,10 +17,10 @@ go get github.com/Chyroc/fs/cmd/fs-svr
 
 server
 ```bash
-
+fs-svr -port 1234 -mode pull
 ```
 
 client
 ```bash
-
+fs-cli -host <host> -port <port> -dir ./dir-to-sync
 ```
