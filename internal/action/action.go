@@ -3,11 +3,9 @@ package action
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/Chyroc/fs/internal/filesys"
 	"io/ioutil"
 	"net"
-	"os"
-
-	"github.com/Chyroc/fs/internal/filesys"
 )
 
 func StartFolderSync(mode string, port int) error {
@@ -33,7 +31,7 @@ func startTCPServer(port int) error {
 
 		go func() {
 			if err := connHandler(conn); err != nil {
-				fmt.Println("err:", err)
+				panic(err)
 			}
 		}()
 	}
@@ -56,9 +54,7 @@ func connHandler(conn net.Conn) error {
 		return nil
 	}
 
-	fmt.Println("sync:", files[0].Name)
-
-	if err = os.RemoveAll(files[0].Name); err != nil {
+	if err = filesys.RemoveAll(files[0]); err != nil {
 		return err
 	}
 
